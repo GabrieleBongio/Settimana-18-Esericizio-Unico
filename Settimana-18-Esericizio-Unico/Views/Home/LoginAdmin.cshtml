@@ -1,0 +1,50 @@
+﻿@model Settimana_18_Esericizio_Unico.Models.Amministratore
+
+@{
+    ViewBag.Title = "LoginAdmin";
+}
+
+<h4>Login Amministratori:</h4>
+@if (Session["Errore"] != null)
+{<div class="alert alert-danger" role="alert">@Session["Errore"].ToString()</div>}
+@if (Session["Message"] != null)
+{<div class="alert alert-success" role="alert">@Session["Message"].ToString()</div>}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group my-4">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Accedi" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Ritorna alla Home", "Index", "Home", new { area = ""}, new { @class = "btn btn-outline-primary"})
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
