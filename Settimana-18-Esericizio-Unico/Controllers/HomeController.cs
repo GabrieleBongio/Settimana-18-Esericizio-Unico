@@ -5,24 +5,29 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using Settimana_18_Esericizio_Unico.Models;
 
 namespace Settimana_18_Esericizio_Unico.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult LoginAdmin()
+        [AllowAnonymous]
+        public ActionResult Login()
         {
             return View();
         }
 
+        [AllowAnonymous]
         [HttpPost]
-        public ActionResult LoginAdmin(Amministratore a)
+        public ActionResult Login(Amministratore a)
         {
             string connString = ConfigurationManager
                 .ConnectionStrings["myConnection"]
@@ -41,31 +46,37 @@ namespace Settimana_18_Esericizio_Unico.Controllers
                 {
                     if (reader.GetString(2) != a.Password)
                     {
-                        this.Session["Errore"] = "Password sbagliata";
+                        ViewBag.Error = "Password sbagliata";
                         return View();
                     }
                     else
                     {
-                        this.Session["Account"] = "admin";
-                        return RedirectToAction("Index", "Prodotti");
+                        FormsAuthentication.SetAuthCookie(a.Username, false);
+                        return RedirectToAction("Index");
                     }
                 }
                 else
                 {
-                    this.Session["Errore"] = "Nessun amministratore con questo Username";
+                    ViewBag.Error = "Nessun amministratore con questo Username";
                     return View();
                 }
             }
             catch (Exception ex)
             {
                 Response.Write(ex.ToString());
-                this.Session["Errore"] = "Errore nella Login";
+                ViewBag.Error = "Errore nella Login";
                 return View();
             }
             finally
             {
                 conn.Close();
             }
+        }
+
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index");
         }
     }
 }

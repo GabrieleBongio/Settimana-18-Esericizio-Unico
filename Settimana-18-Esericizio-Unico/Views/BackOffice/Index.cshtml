@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="display-6">BackOffice</h2>
+
+<div class="row g-0">
+    <div class="col-6 border-end">
+        <p class="fw-light fs-4 text-center">Registra</p>
+        <div class="border-top border-bottom p-3 m-0">
+            @Html.ActionLink("Registra Nuovo Cliente", "RegistraClientiPrivato", "BackOffice", new { area = "" }, new { @class = "btn btn-outline-primary" })
+        </div>
+        <div class="border-top border-bottom p-3 m-0">
+            @Html.ActionLink("Registra Nuova Spedizione", "RegistraSpedizione", "BackOffice", new { area = "" }, new { @class = "btn btn-outline-primary" })
+        </div>
+        <div class="border-top border-bottom p-3 m-0">
+            @Html.ActionLink("Registra Nuovo Aggiornamento", "RegistraAggiornamento", "BackOffice", new { area = "" }, new { @class = "btn btn-outline-primary" })
+        </div>
+    </div>
+    <div class="col-6">
+        <p class="fw-light fs-4 text-center">Visualizza</p>
+        
+    </div>
+</div>

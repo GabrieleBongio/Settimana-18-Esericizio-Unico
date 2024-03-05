@@ -120,9 +120,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BackOfficeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="CustomValidations\CustomCheckIfOnlyNumbers.cs" />
-    <Compile Include="CustomValidations\CustomNotBeforeToday.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -130,6 +129,7 @@
     <Compile Include="Models\Amministratore.cs" />
     <Compile Include="Models\ClienteAzienda.cs" />
     <Compile Include="Models\ClientePrivato.cs" />
+    <Compile Include="Models\GestoreRuoli.cs" />
     <Compile Include="Models\Spedizione.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -182,7 +182,10 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\LoginAdmin.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\BackOffice\RegistraClientiPrivato.cshtml" />
+    <Content Include="Views\BackOffice\RegistraClientiAzienda.cshtml" />
+    <Content Include="Views\BackOffice\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

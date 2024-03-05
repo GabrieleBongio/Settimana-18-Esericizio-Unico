@@ -1,14 +1,17 @@
 ﻿@model Settimana_18_Esericizio_Unico.Models.Amministratore
 
 @{
-    ViewBag.Title = "LoginAdmin";
+    ViewBag.Title = "Login";
 }
 
-<h4>Login Amministratori:</h4>
-@if (Session["Errore"] != null)
-{<div class="alert alert-danger" role="alert">@Session["Errore"].ToString()</div>}
-@if (Session["Message"] != null)
-{<div class="alert alert-success" role="alert">@Session["Message"].ToString()</div>}
+<h2>Accedi come Amministratore</h2>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.Error
+    </div>
+}
 
 @using (Html.BeginForm())
 {
@@ -42,7 +45,7 @@
 }
 
 <div>
-    @Html.ActionLink("Ritorna alla Home", "Index", "Home", new { area = ""}, new { @class = "btn btn-outline-primary"})
+    @Html.ActionLink("Ritorna Alla Home", "Index", "Home", new { area = "" }, new { @class = "btn btn-outline-primary" })
 </div>
 
 @section Scripts {

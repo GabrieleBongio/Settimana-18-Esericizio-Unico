@@ -1,0 +1,55 @@
+﻿@model Settimana_18_Esericizio_Unico.Models.ClienteAzienda
+
+@{
+    ViewBag.Title = "RegistraClientiAzienda";
+}
+
+<h2>Nuovo Cliente</h2>
+
+<div class="row">
+    <div class="col-2 offset-1 text-center">
+        @Html.ActionLink("Privato", "RegistraClientiPrivato", "BackOffice", new { area = "" }, new { @class = "btn btn-dark opacity-50" })
+    </div>
+    <div class="col-2 offset-1 text-center">
+        @Html.ActionLink("Azienda", "RegistraClientiAzienda", "BackOffice", new { area = "" }, new { @class = "btn btn-dark" })
+    </div>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.P_Iva, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.P_Iva, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.P_Iva, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group my-4">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Crea Nuovo Cliente Azienda" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Ritorna Al BackOffice", "Index", "BackOffice", new { area = "" }, new { @class = "btn btn-outline-primary" })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

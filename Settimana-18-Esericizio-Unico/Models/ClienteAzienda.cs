@@ -16,7 +16,6 @@ namespace Settimana_18_Esericizio_Unico.Models
         [MaxLength(40, ErrorMessage = "Lunghezza massima 40 caratteri")]
         public string Nome { get; set; }
 
-        [Display(Name = "Codice Fiscale")]
         [Required(ErrorMessage = "Questo campo è obbligatorio")]
         [StringLength(11, MinimumLength = 11, ErrorMessage = "Lunghezza esatta di 11 caratteri")]
         public string P_Iva { get; set; }
