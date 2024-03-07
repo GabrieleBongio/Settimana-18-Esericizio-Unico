@@ -25,6 +25,7 @@ namespace Settimana_18_Esericizio_Unico.Models
         public string Numero_Identificativo { get; set; }
 
         [Required(ErrorMessage = "Questo campo è obbligatorio")]
+        [DataType(DataType.Date)]
         public DateTime Data_Spedizione { get; set; }
 
         [Required(ErrorMessage = "Questo campo è obbligatorio")]
@@ -48,6 +49,7 @@ namespace Settimana_18_Esericizio_Unico.Models
         public double Costo_Spedizione { get; set; }
 
         [Required(ErrorMessage = "Questo campo è obbligatorio")]
+        [DataType(DataType.Date)]
         public DateTime Data_Consegna { get; set; }
 
         public Spedizione() { }

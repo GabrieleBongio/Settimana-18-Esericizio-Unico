@@ -1,0 +1,17 @@
+﻿@model List<Settimana_18_Esericizio_Unico.Models.Aggiornamento>
+@{
+    ViewBag.Title = "DettagliSpedizione";
+}
+
+<h4>Aggiornamenti:</h4>
+
+@foreach (Settimana_18_Esericizio_Unico.Models.Aggiornamento a in Model)
+{
+    <div class="border-top border-2 px-3">
+        <p class="mt-2">Orario di registrazione: @a.Ora_Registrazione</p>
+        <p class="fw-lighter fs-5">stato spedizione: @a.Stato</p>
+        <p>la tua spedizione si trova a @a.Luogo</p>
+        <p class="fw-lighter">@a.Descrizione</p>
+    </div>
+}
+

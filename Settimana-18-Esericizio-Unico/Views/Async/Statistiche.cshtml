@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Statistiche";
+}
+
+<h2>Statistiche</h2>
+
+<h4>Spedizioni in consegna nella data odierna:</h4>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Numero Identificativo</th>
+            <th scope="col">Data Spedizione</th>
+            <th scope="col">Peso</th>
+            <th scope="col">Città</th>
+            <th scope="col">Indirizzo</th>
+            <th scope="col">Nominativo</th>
+            <th scope="col">Costo</th>
+            <th scope="col">Data Consegna</th>
+        </tr>
+    </thead>
+    <tbody id="spedizioniInConsegnaOggi">
+        
+    </tbody>
+</table>
+
+<h4>Numero spedizioni ancora da consegnare:</h4>
+
+<p id="spedizioniFuturaConsegna" class="pb-3 border-bottom" ></p>
+
+<h4>Numero spedizioni per città:</h4>
+
+<div id="spedizioniPerCittà" class="pb-3 border-bottom"></div>
+
+@section scripts {
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $.ajax({
+                url: '/Async/TutteLeSpedizoniOdierne',
+                type: 'get',
+                success: function (data) {
+                    console.log(data)
+                    var spedizioniOdierne = ''
+                    $.each(data.listaSpedizioniOdierne, function (item) {
+                        spedizioniOdierne += '<tr>'
+                        spedizioniOdierne += '<td>' + item.Numero_Identificativo + '</td>'
+                        spedizioniOdierne += '<td>' + item.Data_Spedizione + '</td>'
+                        spedizioniOdierne += '<td>' + item.Peso + '</td>'
+                        spedizioniOdierne += '<td>' + item.Città_Destinataria + '</td>'
+                        spedizioniOdierne += '<td>' + item.Indirizzo + '</td>'
+                        spedizioniOdierne += '<td>' + item.Nominativo + '</td>'
+                        spedizioniOdierne += '<td>' + item.Costo_Spedizione + '</td>'
+                        spedizioniOdierne += '<td>' + item.Data_Consegna + '</td>'
+                        spedizioniOdierne += '<tr>'
+
+                    })
+
+                    $('#spedizioniInConsegnaOggi').html(spedizioniOdierne)
+                }
+            })
+        })
+
+    </script>
+    }

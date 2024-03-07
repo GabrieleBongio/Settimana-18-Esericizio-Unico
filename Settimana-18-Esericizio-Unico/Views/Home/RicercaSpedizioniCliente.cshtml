@@ -1,0 +1,51 @@
+﻿@model Settimana_18_Esericizio_Unico.Models.FiltroSpedizioniCliente
+
+@{
+    ViewBag.Title = "RicercaSpedizioniCliente";
+}
+
+<h2>Ricerca Spedizione</h2>
+
+<div class="row">
+    <div class="col-2 offset-1 text-center">
+        @Html.ActionLink("Privato", "RicercaSpedizioniCliente", "Home", new { area = "" }, new { @class = "btn btn-dark" })
+    </div>
+    <div class="col-2 offset-1 text-center">
+        @Html.ActionLink("Azienda", "RicercaSpedizioniAzienda", "Home", new { area = "" }, new { @class = "btn btn-dark opacity-50" })
+    </div>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Cod_Fisc, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Cod_Fisc, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Cod_Fisc, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Numero_Identificativo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Numero_Identificativo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Numero_Identificativo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group my-4">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Cerca" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Ritorna Al BackOffice", "Index", "Home", new { area = "" }, new { @class = "btn btn-outline-primary" })
+</div>
